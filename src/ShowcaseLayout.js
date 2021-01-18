@@ -1,6 +1,8 @@
 import React from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
+import Dropd from "./dropdown";
+
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 /**
@@ -10,6 +12,10 @@ export default class AddRemoveLayout extends React.PureComponent {
   constructor(props) {
     super(props);
 
+    //dropdownVisible: false
+
+    // dropdown.handleChange = dropdown.handleChange.bind(dropdown);
+
     this.state = {
       items: [0, 1, 2, 3, 4, 5].map(function (i, key, list) {
         return {
@@ -17,7 +23,7 @@ export default class AddRemoveLayout extends React.PureComponent {
           x: i * 2,
           y: 0,
           w: 2,
-          h: 2
+          h: 2.5
         };
       }),
       newCounter: 6
@@ -30,12 +36,15 @@ export default class AddRemoveLayout extends React.PureComponent {
     const i = el.add ? "+" : el.i;
     return (
       // in line  38  here the 0 and 1 Appear in cards
-      <div key={i} data-grid={el}>
-        <span className="text">{i}</span>
 
-        <span className="remove" onClick={this.onRemoveItem.bind(this, i)}>
-          Delete
+      <div key={i} data-grid={el}>
+        <span>
+          {" "}
+          <p>card number: {i} </p>
         </span>
+        <div>
+          <Dropd />
+        </div>
       </div>
     );
   }
@@ -49,7 +58,7 @@ export default class AddRemoveLayout extends React.PureComponent {
         x: (this.state.items.length * 2) % (this.state.cols || 12),
         y: Infinity, // puts it at the bottom
         w: 2,
-        h: 2
+        h: 2.5
       }),
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1
@@ -65,6 +74,7 @@ export default class AddRemoveLayout extends React.PureComponent {
     return (
       <div>
         <button onClick={this.onAddItem}>Add Item</button>
+
         <ResponsiveReactGridLayout
           onLayoutChange={this.onLayoutChange}
           onBreakpointChange={this.onBreakpointChange}
