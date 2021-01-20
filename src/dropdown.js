@@ -1,5 +1,5 @@
 import React from "react";
-
+import Chart from './charts'
 export default class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
@@ -79,12 +79,17 @@ export default class FlavorForm extends React.Component {
               value={this.state.y}
               onChange={(event) => this.handleChangeinputyyy(event)}
             />{" "}
+
           </div>
         </form>
       );
     }
   }
-
+  callChart(){
+    <div>
+    <Chart />
+    </div>
+  }
   // <button onClick={this.enterinfo.bind(this)}> done </button>
 
   render() {
@@ -125,6 +130,7 @@ export default class FlavorForm extends React.Component {
           {" "}
           you have choosed<b> {this.state.value}</b>
         </p>{" "}
+        <button onClick={this.callChart}> Done</button >
       </div>
     );
   }
