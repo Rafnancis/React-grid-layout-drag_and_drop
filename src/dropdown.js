@@ -1,9 +1,21 @@
-import React from "react";
-import Chart from './charts'
+import React, { Fragment } from "react";
+import Chart from "./charts";
+import Scatterr from "./scatter";
+import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
+var Pie = require("./piechart");
+var Line = require("./Linechart");
+var Bubble = require("./bubble");
 export default class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: "Scatter Plots", x: "", y: "", val: "", labelss: "" };
+    this.state = {
+      value: "Scatter Plots",
+      x: "",
+      y: "",
+      val: "",
+      labelss: "",
+      display: ""
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     //this.handleChange = this.handleChangeinput.bind(this);
@@ -79,58 +91,82 @@ export default class FlavorForm extends React.Component {
               value={this.state.y}
               onChange={(event) => this.handleChangeinputyyy(event)}
             />{" "}
-
           </div>
         </form>
       );
     }
   }
-  callChart(){
-    <div>
-    <Chart />
-    </div>
+
+  callChart = () => {
+    //<Chart />;
+    this.setState({ display: "hid" });
+    console.log("ets");
+  };
+  chartC() {
+    console.log("lmao");
+    return (
+      <div>
+        <h1> lool</h1>
+      </div>
+    );
   }
   // <button onClick={this.enterinfo.bind(this)}> done </button>
 
   render() {
+    let inputStyle = {
+      display: "hidden"
+    };
+    // change code below this line
+
+    if (this.state.display === "hid") {
+      console.log("done");
+      inputStyle = {
+        display: "none"
+      };
+    }
     return (
       <div>
-        <label>
+        <div className="lol" style={inputStyle}>
+          <label>
+            <p>
+              <b> choose the chart: </b>
+            </p>
+            <select value={this.state.value} onChange={this.handleChange}>
+              <option value="Scatter Plots">Scatter Plots</option>
+              <option value="Pie Charts">Pie Charts</option>
+              <option value="Bar Charts">Bar Charts</option>
+              <option value="Bubble Charts">Bubble Charts</option>
+
+              <option value="Line charts">Line charts</option>
+              <option value="time series">time series</option>
+            </select>
+          </label>
+          {this.subComponent()}
           <p>
-            <b> choose the chart: </b>
-          </p>
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="Scatter Plots">Scatter Plots</option>
-            <option value="Pie Charts">Pie Charts</option>
-            <option value="Bar Charts">Bar Charts</option>
-            <option value="Bubble Charts">Bubble Charts</option>
+            {" "}
+            you have choosed<b> {this.state.value}</b>
+          </p>{" "}
+        </div>
+        <If condition={this.state.value == "Bar Charts"}>
+          <Then>{this.state.display === "hid" && <Chart />}</Then>
+          <ElseIf condition={this.state.value == "Pie Charts"}>
+            {this.state.display === "hid" && <Pie />}
+          </ElseIf>
+          <ElseIf condition={this.state.value == "Line charts"}>
+            {this.state.display === "hid" && <Line />}
+          </ElseIf>
+          <ElseIf condition={this.state.value == "Scatter Plots"}>
+            {this.state.display === "hid" && <Scatterr />}
+          </ElseIf>
+          <ElseIf condition={this.state.value == "Bubble Charts"}>
+            {this.state.display === "hid" && <Bubble />}
+          </ElseIf>
+        </If>
 
-            <option value="Configuration Options">Configuration Options</option>
-            <option value="Responsive/Fluid Layouts">
-              Responsive/Fluid Layouts
-            </option>
-            <option value="Uirevision in Plotly.react">
-              Uirevision in Plotly.react
-            </option>
-            <option value="React plotly.js">React plotly.js</option>
-            <option value="Analytical Apps with Dash">
-              Analytical Apps with Dash
-            </option>
-            <option value="waterfall charts">waterfall charts</option>
-
-            <option value="candlestick chart">candlestick chart</option>
-            <option value="funnel and funnelarea charts">
-              funnel and funnelarea charts
-            </option>
-            <option value="time series">time series</option>
-          </select>
-        </label>
-        {this.subComponent()}
-        <p>
+        <button value={this.state.display} onClick={this.callChart}>
           {" "}
-          you have choosed<b> {this.state.value}</b>
-        </p>{" "}
-        <button onClick={this.callChart}> Done</button >
+          check
+        </button>
       </div>
     );
   }
