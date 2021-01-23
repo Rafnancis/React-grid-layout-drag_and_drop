@@ -1,10 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
+
 import Chart from "./charts";
 import Scatterr from "./scatter";
+import Cann from "./candlestick";
+import Rad from "./radialbar";
 import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
 var Pie = require("./piechart");
 var Line = require("./Linechart");
-var Bubble = require("./bubble");
+
 export default class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
@@ -138,7 +141,8 @@ export default class FlavorForm extends React.Component {
               <option value="Bubble Charts">Bubble Charts</option>
 
               <option value="Line charts">Line charts</option>
-              <option value="time series">time series</option>
+              <option value="candle">candle</option>
+              <option value="Radialbar">Radialbar</option>
             </select>
           </label>
           {this.subComponent()}
@@ -147,19 +151,22 @@ export default class FlavorForm extends React.Component {
             you have choosed<b> {this.state.value}</b>
           </p>{" "}
         </div>
-        <If condition={this.state.value == "Bar Charts"}>
+        <If condition={this.state.value === "Bar Charts"}>
           <Then>{this.state.display === "hid" && <Chart />}</Then>
-          <ElseIf condition={this.state.value == "Pie Charts"}>
+          <ElseIf condition={this.state.value === "Pie Charts"}>
             {this.state.display === "hid" && <Pie />}
           </ElseIf>
-          <ElseIf condition={this.state.value == "Line charts"}>
+          <ElseIf condition={this.state.value === "Line charts"}>
             {this.state.display === "hid" && <Line />}
           </ElseIf>
-          <ElseIf condition={this.state.value == "Scatter Plots"}>
+          <ElseIf condition={this.state.value === "Scatter Plots"}>
             {this.state.display === "hid" && <Scatterr />}
           </ElseIf>
-          <ElseIf condition={this.state.value == "Bubble Charts"}>
-            {this.state.display === "hid" && <Bubble />}
+          <ElseIf condition={this.state.value === "candle"}>
+            {this.state.display === "hid" && <Cann />}
+          </ElseIf>
+          <ElseIf condition={this.state.value === "Radialbar"}>
+            {this.state.display === "hid" && <Rad />}
           </ElseIf>
         </If>
 

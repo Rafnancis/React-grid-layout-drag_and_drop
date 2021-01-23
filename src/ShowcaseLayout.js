@@ -40,6 +40,9 @@ export default class AddRemoveLayout extends React.PureComponent {
       <div key={i} data-grid={el}>
         <span>
           {" "}
+          <span className="remove" onClick={this.onRemoveItem.bind(this, i)}>
+            Delete
+          </span>
           <p>card number: {i} </p>
         </span>
         <div>
