@@ -1,5 +1,5 @@
 body {
-  background: rgb(76, 107, 143);
+  background:rgba(8, 64, 82, 0.966);
   padding: 20px;
   overflow: scroll;
 }
@@ -7,7 +7,7 @@ body {
   width: 100%;
 }
 .react-grid-layout {
-  background: rgba(60, 106, 128, 0.911);
+  background: rgba(8, 64, 82, 0.966);
 }
 .layoutJSON {
   background: rgb(211, 130, 65);
@@ -24,7 +24,7 @@ body {
   box-sizing: border-box;
 }
 .react-grid-item:not(.react-grid-placeholder) {
-  background: rgba(218, 161, 114, 0.918);
+  background: rgb(233, 223, 218);
 }
 .react-grid-item.resizing {
   opacity: 0.9;
@@ -42,6 +42,7 @@ body {
   right: 0;
   margin: auto;
   height: 24px;
+ 
 }
 .react-grid-item .minMax {
   font-size: 18px;
@@ -57,5 +58,6 @@ body {
 }
 li b {
   font-size: 19px;
+ 
   line-height: 14px;
 }

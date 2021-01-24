@@ -1,9 +1,15 @@
 import React from "react";
-
 import Chart from "./charts";
 import Scatterr from "./scatter";
 import Cann from "./candlestick";
 import Rad from "./radialbar";
+import Ts from "./timeseries";
+import Polar from "./polar";
+import RAdi from "./radial";
+import Ind from "./semicircle";
+//import Bub from "./bubble";
+import Cust from "./customcirc";
+import Water from "./waterfall";
 import { If, Then, ElseIf, Else } from "react-if-elseif-else-render";
 var Pie = require("./piechart");
 var Line = require("./Linechart");
@@ -138,11 +144,15 @@ export default class FlavorForm extends React.Component {
               <option value="Scatter Plots">Scatter Plots</option>
               <option value="Pie Charts">Pie Charts</option>
               <option value="Bar Charts">Bar Charts</option>
-              <option value="Bubble Charts">Bubble Charts</option>
-
               <option value="Line charts">Line charts</option>
               <option value="candle">candle</option>
               <option value="Radialbar">Radialbar</option>
+              <option value="Timeseries">Timeseries</option>
+              <option value="polar">polar</option>
+              <option value="radial">radial</option>
+              <option value="indicator">indicator</option>
+              <option value="Custome Circle">Custome Circle</option>
+              <option value="Waterfall">Waterfall</option>
             </select>
           </label>
           {this.subComponent()}
@@ -167,6 +177,25 @@ export default class FlavorForm extends React.Component {
           </ElseIf>
           <ElseIf condition={this.state.value === "Radialbar"}>
             {this.state.display === "hid" && <Rad />}
+          </ElseIf>
+          <ElseIf condition={this.state.value === "Timeseries"}>
+            {this.state.display === "hid" && <Ts />}
+          </ElseIf>
+          <ElseIf condition={this.state.value === "polar"}>
+            {this.state.display === "hid" && <Polar />}
+          </ElseIf>
+          <ElseIf condition={this.state.value === "radial"}>
+            {this.state.display === "hid" && <RAdi />}
+          </ElseIf>
+          <ElseIf condition={this.state.value === "indicator"}>
+            {this.state.display === "hid" && <Ind />}
+          </ElseIf>
+
+          <ElseIf condition={this.state.value === "Custome Circle"}>
+            {this.state.display === "hid" && <Cust />}
+          </ElseIf>
+          <ElseIf condition={this.state.value === "Waterfall"}>
+            {this.state.display === "hid" && <Water />}
           </ElseIf>
         </If>
 
